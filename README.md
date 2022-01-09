@@ -30,7 +30,7 @@ import matplotlib.pyplot as plt
 
 ## Using the Data
 ```python
-# Reading the data cube (Replace 'x' with latest version)
+# Reading the data cube (Replace 'x' with latest version, '2.0.0' for the noon data cube)
 data = np.load('data_cube_vx.npy',allow_pickle='TRUE').item()
 
 # Returns the entire cube
@@ -38,7 +38,7 @@ print(data)
 
 # Working with Values
 # The example below would give you the centroid value for the 3rd Line in Order 50 for Feb 8, 2021 @ 19:10:24
-centroid = data['Time 20210208T191024')]['Order 50']['Line 3']['centroid']
+centroid = data['Time 20210509T195226')]['Order 50']['Line 3']['centroid']
 ```
 
 ## Working with Date-times and Plots
