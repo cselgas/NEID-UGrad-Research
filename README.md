@@ -37,7 +37,7 @@ data = np.load('data_cube_vx.npy',allow_pickle='TRUE').item()
 print(data)
 
 # Working with Values
-# The example below would give you the centroid value for the 3rd Line in Order 50 for Feb 8, 2021 @ 19:10:24
+# The example below would give you the centroid value for the 3rd Line in Order 50 for May 9, 2021 @ 19:52:26
 centroid = data['Time 20210509T195226')]['Order 50']['Line 3']['centroid']
 ```
 
