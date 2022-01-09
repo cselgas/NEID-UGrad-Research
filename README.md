@@ -1,6 +1,6 @@
 # Background
 
-This data-cube contains the centroid, amplitude, sigma and skew values of the spectral lines retrieved using NEID Solar Data from February 8, 2021, approximately 16:00 - 23:00.
+This data-cube contains the centroid, amplitude, sigma and skew values of the spectral lines retrieved using NEID Solar Data from December 2020 to August 2021.
 
 ## Structure
 The architecture of the cube, a Numpy nested dictionary, is as follows:
