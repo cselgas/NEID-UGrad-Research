@@ -99,7 +99,7 @@ centroid_pixval = np.interp(centroid, wchunk, skgauss_x)
 ```
 
 ## Amplitude Values
-The normalized amplitude, out of a scale of 1.0, is found using the maximum, or peak, value of the Skewed Gaussian fit Model. To find the depth in terms of electron flux, I had to create a second model using the non-normalized flux upside:
+The normalized amplitude, out of a scale of 1.0, is found using the maximum, or peak, value of the Skewed Gaussian fit Model:
 ```python
 # Normalized Amplitude
 norm_amplitude = np.amax(out.best_fit, axis=0)
