@@ -78,12 +78,15 @@ A wave chunk within a 15-pixel range is created using a list of reference line v
 from lmfit.models import GaussianModel, SkewedGaussianModel, VoigtModel
 ```
 ```python
-wchunk = wave[order,(reference_centroid-15):(reference_centroid+15)]
-xchunk = list(range(0,30))
+wchunk = wave[order,(rounded_ref_centroid_pixval-15):(rounded_ref_centroid_pixval+15)]
+xchunk = np.arange(len(schunk))
 
 mod = SkewedGaussianModel()
-pars = mod.guess(norm_upside, x=wchunk)
-out = mod.fit(norm_upside, pars, x=wchunk)
+pars = mod.guess(upside, x=wchunk)
+try:
+    out = mod.fit(upside, pars, x=wchunk)
+except ValueError:
+    continue
 ```
 
 ## Centroid Values
@@ -92,7 +95,7 @@ The centroid values, both in Angstrom and pixel units, can therefore be accessed
 centroid = pars['center'].value
 
 # Interpolating to arrive at the corresponding pixel value
-centroid_pixval = np.interp(centroid, wchunk, reference_centroid+xchunk)
+centroid_pixval = np.interp(centroid, wchunk, skgauss_x)
 ```
 
 ## Amplitude Values
@@ -100,18 +103,15 @@ The normalized amplitude, out of a scale of 1.0, is found using the maximum, or 
 ```python
 # Normalized Amplitude
 norm_amplitude = np.amax(out.best_fit, axis=0)
-
-# Electron Amplitude
-mod = SkewedGaussianModel()
-pars2 = mod.guess(upside, x=wchunk)
-out = mod.fit(upside, pars2, x=wchunk)
-elec_amplitude = pars2['amplitude'].value
 ```
 
 ## Sigma
 The sigma value is simply determined from the output of the normalized skewed model:
 ```python
-sigma = pars['sigma'].value
+mod2 = SkewedGaussianModel()
+pars2 = mod2.guess(skgauss_y, x=skgauss_x)
+out2 = mod2.fit(skgauss_y, pars2, x=skgauss_x)
+sigma = pars2['sigma'].value
 ```
 
 ## Skew
